@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module("online-store", []);
+  var app = angular.module("onlineStore", []);
 
   app.controller("ProductController", ["$scope", "$http", function($scope, $http) {
     $scope.products = [];
@@ -17,5 +17,5 @@
       $scope.vouchers = data;
     });
   }]);
-  
+
 })();
