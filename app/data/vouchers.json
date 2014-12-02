@@ -1,0 +1,14 @@
+[
+  { 
+    "discount": 5,
+    "conditions": []
+  },
+  { 
+    "discount": 10,
+    "conditions": ["total > 50"]
+  },
+  { 
+    "discount": 15,
+    "conditions":["total > 75", "hasFootwearItem"]
+  }
+]
