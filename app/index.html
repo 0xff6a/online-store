@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="online-store">
   <head>
     <meta charset="utf-8">
     <title>Angular Store 1.0</title>
@@ -17,10 +17,39 @@
     </header>
 
     <main>
-      <section>
-        <p>Product1</p>
-        <p>Product2</p>
+
+      <section ng-controller="ProductController">
+        <h2>Products</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+          <tr>
+          <tr ng-repeat="product in products">
+            <td>{{product.name}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.price | currency:"£"}}</td>
+            <td>{{product.stock}}</td>
+          </tr>
+        </table>
       </section>
+
+      <aside ng-controller="VoucherController">
+        <h2>Vouchers</h2>
+        <table>
+          <tr>
+            <th>Conditions</th>
+            <th>Discount</th>
+          </tr>
+          <tr ng-repeat="voucher in vouchers">
+            <td>{{voucher.conditions}}</td>
+            <td>{{voucher.discount | currency:"£"}}</td>
+          </tr>
+        </table>
+      </aside>
+
     </main>
 
     <!-- Script Container -->
