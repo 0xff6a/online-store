@@ -19,35 +19,11 @@
     <main>
 
       <section ng-controller="ProductController">
-        <h2>Products</h2>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Stock</th>
-          <tr>
-          <tr ng-repeat="product in products">
-            <td>{{product.name}}</td>
-            <td>{{product.category}}</td>
-            <td>{{product.price | currency:"£"}}</td>
-            <td>{{product.stock}}</td>
-          </tr>
-        </table>
+        <product-list></product-list>
       </section>
 
       <aside ng-controller="VoucherController">
-        <h2>Vouchers</h2>
-        <table>
-          <tr>
-            <th>Conditions</th>
-            <th>Discount</th>
-          </tr>
-          <tr ng-repeat="voucher in vouchers">
-            <td>{{voucher.conditions}}</td>
-            <td>{{voucher.discount | currency:"£"}}</td>
-          </tr>
-        </table>
+        <voucher-list></voucher-list>
       </aside>
 
     </main>

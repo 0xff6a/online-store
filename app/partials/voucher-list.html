@@ -1,0 +1,11 @@
+<h2>Vouchers</h2>
+<table>
+  <tr>
+    <th>Conditions</th>
+    <th>Discount</th>
+  </tr>
+  <tr ng-repeat="voucher in vouchers">
+    <td>{{voucher.conditions}}</td>
+    <td>{{voucher.discount | currency:"£"}}</td>
+  </tr>
+</table>
