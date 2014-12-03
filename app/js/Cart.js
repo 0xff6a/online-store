@@ -4,6 +4,7 @@
 
   cart.controller("ShoppingCartController", ["$scope", function($scope) {
     $scope.purchases = [];
+    $scope.messages = {};
 
     $scope.total = function() {
       return this.subtotals().sum();
@@ -17,15 +18,33 @@
 
     $scope.addToCart = function(product) {
       if ( this.isAlreadyPurchased(product) ) {
-        this.updateStock(product);
+        this.addToStock(product);
       } else {
         this.purchases.push(product);
       }
     };
 
-    $scope.popSingle = function(product) {
-      var single = JSON.parse(JSON.stringify(product));
+    $scope.removeFromCart = function(product) {
+      if( this.isAlreadyPurchased(product) ) {
+        this.pullFromStock(product);
+      } else {
+        this.messages.errors = "Cannot delete a non-existent product";
+      };
+    };
 
+    $scope.popSingle = function(product) {
+      var single = JSON.parse(JSON.stringify(product));;
+
+      product.stock -= 1;
+      single.stock = 1;
+
+      return single;
+    };
+
+    $scope.pushSingle = function(product) {
+      var single = JSON.parse(JSON.stringify(product));;
+
+      product.stock += 1;
       single.stock = 1;
 
       return single;
@@ -41,10 +60,24 @@
       });
     };
 
-    $scope.updateStock = function(product) {
-      var productIndex = this.purchaseIds().indexOf(product.id);
+    $scope.purchaseIdOf = function(product) {
+      return this.purchaseIds().indexOf(product.id);
+    };
 
-      this.purchases[productIndex].stock += product.stock;
+    $scope.addToStock = function(product) {
+      var purchaseId = this.purchaseIdOf(product);
+
+      this.purchases[purchaseId].stock += product.stock;
+    };
+
+    $scope.pullFromStock = function(product) {
+      var purchaseId = this.purchaseIdOf(product);
+
+      this.purchases[purchaseId].stock -= product.stock;
+      
+      if( this.purchases[purchaseId].stock === 0 ) {
+        this.purchases.splice(purchaseId, 1);
+      }
     };
   }]);
 
@@ -54,5 +87,5 @@
       templateUrl: "partials/cart-widget.html"
     };
   });
-  
+
 })();

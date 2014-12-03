@@ -3,7 +3,9 @@ describe('ProductController', function() {
       ctrl, 
       $httpBackend;
 
-  beforeEach(module('onlineStore'));
+  beforeEach( function() {
+    module('onlineStore');
+  });
   
   beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
     $httpBackend = _$httpBackend_;
@@ -14,13 +16,16 @@ describe('ProductController', function() {
     ctrl = $controller('ProductController', {$scope: scope});
   }));
 
-  it('should set the default value of products model', function() {
-    expect(scope.products).toEqual([]);
-  });
+  describe('initialisation', function() {
 
-  it('it should create product models from data retrieved from XHR', function() {
-    $httpBackend.flush();
+    it('should set the default value of products model', function() {
+      expect(scope.products).toEqual([]);
+    });
 
-    expect(scope.products).toEqual([{name: 'Shirt'}, {name: 'Shoes'}]);
+    it('should create product models from data retrieved from XHR', function() {
+      $httpBackend.flush();
+
+      expect(scope.products).toEqual([{name: 'Shirt'}, {name: 'Shoes'}]);
+    });
   });
 });

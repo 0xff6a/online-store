@@ -33,6 +33,9 @@ describe('Shopping Cart Feature', function() {
   });
 
   it('should allow a user remove a product from their shopping cart', function() {
+    element.all(by.repeater('purchase in purchases')).first().element(by.css('a')).click();
+    total = element(by.css('#cart-total')).getText();
     
+    expect(total).toEqual('Total: £0.00');
   });
 });
