@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/app.css">
 
   </head>
-  <body>
+  <body ng-controller="StoreController">
 
     <header>
 
@@ -19,9 +19,9 @@
 
     </header>
 
-    <main ng-controller="ShoppingCartController">
+    <main>
 
-      <section ng-controller="ProductController">
+      <section>
         <product-list></product-list>
       </section>
 
@@ -29,7 +29,7 @@
         <cart-widget></cart-widget>
       </aside>
 
-      <aside ng-controller="VoucherController">
+      <aside>
         <voucher-list></voucher-list>
       </aside>
 

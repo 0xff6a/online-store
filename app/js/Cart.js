@@ -1,91 +1,82 @@
 (function() {
 
-  var cart = angular.module("cart", []);
+  ShoppingCart = function() {
+    this.purchases = [];
+    this.messages = {};
+  }
 
-  cart.controller("ShoppingCartController", ["$scope", function($scope) {
-    $scope.purchases = [];
-    $scope.messages = {};
+  ShoppingCart.prototype.total = function() {
+    return this.subtotals().sum();
+  };  
 
-    $scope.total = function() {
-      return this.subtotals().sum();
-    };  
+  ShoppingCart.prototype.subtotals = function() {
+    return this.purchases.map( function(purchase) {
+      return (purchase.price * purchase.stock);
+    });
+  };
 
-    $scope.subtotals = function() {
-      return this.purchases.map( function(purchase) {
-        return (purchase.price * purchase.stock);
-      });
+  ShoppingCart.prototype.addToCart = function(product) {
+    if ( this.isAlreadyPurchased(product) ) {
+      this.addToStock(product);
+    } else {
+      this.purchases.push(product);
+    }
+  };
+
+  ShoppingCart.prototype.removeFromCart = function(product) {
+    if( this.isAlreadyPurchased(product) ) {
+      this.pullFromStock(product);
+    } else {
+      this.messages.errors = "Cannot delete a non-existent product";
     };
+  };
 
-    $scope.addToCart = function(product) {
-      if ( this.isAlreadyPurchased(product) ) {
-        this.addToStock(product);
-      } else {
-        this.purchases.push(product);
-      }
-    };
+  ShoppingCart.prototype.popSingle = function(product) {
+    var single = JSON.parse(JSON.stringify(product));;
 
-    $scope.removeFromCart = function(product) {
-      if( this.isAlreadyPurchased(product) ) {
-        this.pullFromStock(product);
-      } else {
-        this.messages.errors = "Cannot delete a non-existent product";
-      };
-    };
+    product.stock -= 1;
+    single.stock = 1;
 
-    $scope.popSingle = function(product) {
-      var single = JSON.parse(JSON.stringify(product));;
+    return single;
+  };
 
-      product.stock -= 1;
-      single.stock = 1;
+  ShoppingCart.prototype.pushSingle = function(product) {
+    var single = JSON.parse(JSON.stringify(product));;
 
-      return single;
-    };
+    product.stock += 1;
+    single.stock = 1;
 
-    $scope.pushSingle = function(product) {
-      var single = JSON.parse(JSON.stringify(product));;
+    return single;
+  };
 
-      product.stock += 1;
-      single.stock = 1;
+  ShoppingCart.prototype.isAlreadyPurchased = function(product) {
+    return (this.purchaseIds().indexOf(product.id) !== -1);
+  };
 
-      return single;
-    };
+  ShoppingCart.prototype.purchaseIds = function() {
+    return this.purchases.map(function(purchase) {
+      return purchase.id;
+    });
+  };
 
-    $scope.isAlreadyPurchased = function(product) {
-      return (this.purchaseIds().indexOf(product.id) !== -1);
-    };
+  ShoppingCart.prototype.purchaseIdOf = function(product) {
+    return this.purchaseIds().indexOf(product.id);
+  };
 
-    $scope.purchaseIds = function() {
-      return this.purchases.map(function(purchase) {
-        return purchase.id;
-      });
-    };
+  ShoppingCart.prototype.addToStock = function(product) {
+    var purchaseId = this.purchaseIdOf(product);
 
-    $scope.purchaseIdOf = function(product) {
-      return this.purchaseIds().indexOf(product.id);
-    };
+    this.purchases[purchaseId].stock += product.stock;
+  };
 
-    $scope.addToStock = function(product) {
-      var purchaseId = this.purchaseIdOf(product);
+  ShoppingCart.prototype.pullFromStock = function(product) {
+    var purchaseId = this.purchaseIdOf(product);
 
-      this.purchases[purchaseId].stock += product.stock;
-    };
-
-    $scope.pullFromStock = function(product) {
-      var purchaseId = this.purchaseIdOf(product);
-
-      this.purchases[purchaseId].stock -= product.stock;
-      
-      if( this.purchases[purchaseId].stock === 0 ) {
-        this.purchases.splice(purchaseId, 1);
-      }
-    };
-  }]);
-
-  cart.directive("cartWidget", function() {
-    return {
-      restrict: "E",
-      templateUrl: "partials/cart-widget.html"
-    };
-  });
+    this.purchases[purchaseId].stock -= product.stock;
+    
+    if( this.purchases[purchaseId].stock === 0 ) {
+      this.purchases.splice(purchaseId, 1);
+    }
+  };
 
 })();

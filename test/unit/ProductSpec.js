@@ -1,31 +1,26 @@
-describe('ProductController', function() {
-  var scope, 
-      ctrl, 
-      $httpBackend;
+describe('Product', function() {
 
-  beforeEach( function() {
-    module('onlineStore');
+  beforeEach(function() {
+    product = { id: 0, price: 12.00, stock: 2 };
+  });
+
+  describe('#popSingle', function() {
+
+    it('should create a single copy of the product, decrementing stock of original', function() {
+      var single = cart.popSingle(product);
+
+      expect(single).toEqual({ id: 0, price: 12.00, stock: 1});
+      expect(product.stock).toBe(1);
+    });
   });
   
-  beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('data/products.json').
-        respond([{name: 'Shirt'}, {name: 'Shoes'}]);
+  describe('#pushSingle', function() {
+    
+    it('should create a single copy of the product, incrementing stock of original', function() {
+      var single = scope.pushSingle(product);
 
-    scope = $rootScope.$new();
-    ctrl = $controller('ProductController', {$scope: scope});
-  }));
-
-  describe('initialisation', function() {
-
-    it('should set the default value of products model', function() {
-      expect(scope.products).toEqual([]);
-    });
-
-    it('should create product models from data retrieved from XHR', function() {
-      $httpBackend.flush();
-
-      expect(scope.products).toEqual([{name: 'Shirt'}, {name: 'Shoes'}]);
+      expect(single).toEqual({ id: 0, price: 12.00, stock: 1});
+      expect(product.stock).toBe(3);
     });
   });
 });
