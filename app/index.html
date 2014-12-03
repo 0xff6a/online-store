@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/app.css">
 
   </head>
-  <body ng-controller="ShoppingCartController">
+  <body ng-controller="ShoppingCartController as cart">
 
     <header>
 
@@ -31,10 +31,15 @@
           <tr>
             <th>Item</th>
             <th>Quantity</th>
-            <th>SubTotal</th>
+            <th>Price</th>
+          </tr>
+          <tr ng-repeat="purchase in purchases">
+            <td>{{purchase.name}}</td>
+            <td>{{purchase.stock + " x "}}</td>
+            <td>{{"@ " + (purchase.price | currency:"£")}}</td>
           </tr>
           <tr>
-            <th>Total: 10000</th>
+            <th>Total: {{total}}</th>
           </tr>
         </table>
       </aside>

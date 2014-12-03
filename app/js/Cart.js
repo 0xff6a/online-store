@@ -14,6 +14,14 @@
       }
     };
 
+    $scope.popSingle = function(product) {
+      var single = JSON.parse(JSON.stringify(product));
+
+      single.stock = 1;
+
+      return single;
+    };
+
     $scope.isAlreadyPurchased = function(product) {
       return (this.purchaseIds().indexOf(product.id) !== -1);
     };
