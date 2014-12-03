@@ -6,10 +6,14 @@
     $scope.purchases = [];
 
     $scope.total = function() {
+      return this.subtotals().sum();
+    };  
+
+    $scope.subtotals = function() {
       return this.purchases.map( function(purchase) {
         return (purchase.price * purchase.stock);
-      }).sum();
-    };  
+      });
+    };
 
     $scope.addToCart = function(product) {
       if ( this.isAlreadyPurchased(product) ) {
