@@ -27,7 +27,7 @@
     };
 
     $scope.purchaseIds = function() {
-      return ids = this.purchases.map(function(purchase) {
+      return this.purchases.map(function(purchase) {
         return purchase.id;
       });
     };
