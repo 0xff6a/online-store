@@ -1,5 +1,7 @@
 describe('ProductController', function() {
-  var scope, ctrl, $httpBackend;
+  var scope, 
+      ctrl, 
+      $httpBackend;
 
   beforeEach(module('onlineStore'));
   

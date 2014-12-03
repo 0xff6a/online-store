@@ -36,8 +36,11 @@ describe('Online Store Display', function() {
 
   describe('Vouchers', function() {
 
-    it('should display a list of available vouchers', function() {
+    it('should display a list of available vouchers and associated information', function() {
+      var discount = element.all(by.repeater('voucher in vouchers').column('voucher.discount')).first().getText();
+
       expect(voucherList.count()).toBe(3);
+      expect(discount).toEqual('£5.00');
     });
   });
 });
