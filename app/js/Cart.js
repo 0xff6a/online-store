@@ -48,6 +48,14 @@
     };
   }]);
 
+  cart.directive("cartWidget", function() {
+    return {
+      restrict: "E",
+      templateUrl: "partials/cart-widget.html"
+    };
+  });
+
+  /* Helpers */
   Array.prototype.sum = function() {
     var result = 0,
         i;

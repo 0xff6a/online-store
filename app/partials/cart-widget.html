@@ -1,0 +1,17 @@
+<h2>Shopping Cart</h2>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  <tr ng-repeat="purchase in purchases">
+    <td>{{purchase.name}}</td>
+    <td>{{purchase.stock + " x "}}</td>
+    <td>{{"@ " + (purchase.price | currency:"£")}}</td>
+    <td><a ng-click="removeFromCart(pushSingle(purchase))">-</a></td>
+  </tr>
+  <tr>
+    <th id="cart-total">{{"Total: " + (total() | currency:"£")}}</th>
+  </tr>
+</table>

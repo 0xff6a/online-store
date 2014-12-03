@@ -33,6 +33,6 @@ describe('Shopping Cart Feature', function() {
   });
 
   it('should allow a user remove a product from their shopping cart', function() {
-
+    
   });
 });
