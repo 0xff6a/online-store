@@ -5,13 +5,13 @@
     <th>Quantity</th>
     <th>Price</th>
   </tr>
-  <tr ng-repeat="purchase in purchases">
+  <tr ng-repeat="purchase in cart.purchases">
     <td>{{purchase.name}}</td>
     <td>{{purchase.stock + " x "}}</td>
     <td>{{"@ " + (purchase.price | currency:"£")}}</td>
     <td><a ng-click="removeFromCart(purchase)">X</a></td>
   </tr>
   <tr>
-    <th id="cart-total">{{"Total: " + (total() | currency:"£")}}</th>
+    <th id="cart-total">{{"Total: " + (cart.total() | currency:"£")}}</th>
   </tr>
 </table>

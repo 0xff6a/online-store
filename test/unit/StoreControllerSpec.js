@@ -1,5 +1,20 @@
 describe('StoreController', function() {
-  var scope, 
+  var productData =   
+      {
+        "id": 0,
+        "name": "Almond Toe Court Shoes, Patent Black",
+        "category": "Women's Footwear",
+        "price": 99.00,
+        "stock": 5
+      },
+      voucherData = 
+      { 
+        "id": 0,
+        "discount": 3,
+        "conditions": [],
+        "description": "£5 off for being a great customer"
+      },
+      scope, 
       ctrl, 
       $httpBackend;
 
@@ -10,9 +25,9 @@ describe('StoreController', function() {
   beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('data/products.json').
-        respond([{name: 'Shirt'}, {name: 'Shoes'}]);
+        respond([productData]);
     $httpBackend.expectGET('data/vouchers.json').
-        respond([{name: 'voucher1'}, {name: 'voucher2'}]);
+        respond([voucherData]);
 
     scope = $rootScope.$new();
     ctrl = $controller('StoreController', {$scope: scope});
@@ -27,7 +42,7 @@ describe('StoreController', function() {
     it('should create product models from data retrieved from XHR', function() {
       $httpBackend.flush();
 
-      expect(scope.products).toEqual([{name: 'Shirt'}, {name: 'Shoes'}]);
+      expect(scope.products).toEqual([new Product(productData)]);
     });
 
     it('should set the default value of vouchers model', function() {
@@ -37,7 +52,7 @@ describe('StoreController', function() {
     it('it should create product models from data retrieved from XHR', function() {
       $httpBackend.flush();
 
-      expect(scope.vouchers).toEqual([{name: 'voucher1'}, {name: 'voucher2'}]);
+      expect(scope.vouchers).toEqual([new Voucher(voucherData)]);
     });
   });
 });

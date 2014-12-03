@@ -8,9 +8,8 @@ describe('ShoppingCart', function() {
     cart = new ShoppingCart();
     product = { id: 0, price: 12.00, stock: 2 };
   });
-  
 
-  describe('Shopping cart functionality', function() {
+  describe('initialisation', function() {
 
     it('should set the default total of shopping cart model to 0', function() {
       expect(cart.total()).toBe(0);
@@ -19,6 +18,9 @@ describe('ShoppingCart', function() {
     it('should have no products initially', function() {
       expect(cart.purchases).toEqual([]);
     });
+  });
+
+  describe('interacting with products', function() {
 
     it('products can be added', function() {
       cart.addToCart(product);

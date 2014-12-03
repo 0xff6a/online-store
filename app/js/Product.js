@@ -1,9 +1,9 @@
-function Product(data) {
-  this.id = data.id;
-  this.name = data.name;
-  this.category = data.category;
-  this.price = data.price;
-  this.stock = data.stock;
+function Product(params) {
+  this.id = params.id;
+  this.name = params.name;
+  this.category = params.category;
+  this.price = params.price;
+  this.stock = params.stock;
 };
 
 Product.prototype.total = function() {
@@ -11,7 +11,7 @@ Product.prototype.total = function() {
 };
 
 Product.prototype.popSingle = function() {
-  var single = JSON.parse(JSON.stringify(this));;
+  var single = new Product(JSON.parse(JSON.stringify(this)));
 
   this.stock -= 1;
   single.stock = 1;
@@ -20,7 +20,7 @@ Product.prototype.popSingle = function() {
 };
 
 Product.prototype.pushSingle = function() {
-  var single = JSON.parse(JSON.stringify(this));;
+  var single = new Product(JSON.parse(JSON.stringify(this)));
 
   this.stock += 1;
   single.stock = 1;

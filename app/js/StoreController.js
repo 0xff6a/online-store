@@ -5,14 +5,21 @@
   app.controller("StoreController", ["$scope", "$http", function($scope, $http) {
     $scope.vouchers = [];
     $scope.products = [];
+    $scope.cart = new ShoppingCart();
 
     $http.get("data/products.json").success(function(data) {
-      $scope.products = data;
+      $scope.products = $scope.factory(Product, data);
     });
 
     $http.get("data/vouchers.json").success(function(data) {
-      $scope.vouchers = data;
+      $scope.vouchers = $scope.factory(Voucher, data);
     });
+
+    $scope.factory = function(obj, paramsArray) {
+      return paramsArray.map(function(params) {
+        return new obj(params);
+      });
+    };
   }]);
 
   app.directive("voucherList", function() {
