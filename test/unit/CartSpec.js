@@ -35,6 +35,4 @@ describe('ShoppingCartController', function() {
 
     expect(scope.purchases).toEqual([combined]);
   });
-
-
 });
