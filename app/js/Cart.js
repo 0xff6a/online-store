@@ -3,8 +3,13 @@
   var cart = angular.module("cart", []);
 
   cart.controller("ShoppingCartController", ["$scope", function($scope) {
-    $scope.total = 0;
     $scope.purchases = [];
+
+    $scope.total = function() {
+      return this.purchases.map( function(purchase) {
+        return (purchase.price * purchase.stock);
+      }).sum();
+    };  
 
     $scope.addToCart = function(product) {
       if ( this.isAlreadyPurchased(product) ) {
@@ -38,5 +43,14 @@
       this.purchases[productIndex].stock += product.stock;
     };
   }]);
+
+  Array.prototype.sum = function() {
+    var result = 0,
+        i;
+
+    for(i = 0; i < this.length; result += this[i++])/* empty */; 
+
+    return result;
+  };
 
 })();

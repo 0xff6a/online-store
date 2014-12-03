@@ -11,10 +11,14 @@ describe('Online Store Display', function() {
   describe('Products', function() {
 
     it('should display a list of all products and associated information', function() {
-      var name = element.all(by.repeater('product in products').column('product.name')).first().getText();
-      var category = element.all(by.repeater('product in products').column('product.category')).first().getText();
-      var price = element.all(by.repeater('product in products').column('product.price')).first().getText();
-      var stock = element.all(by.repeater('product in products').column('product.stock')).first().getText();
+      var name = element.all(by.repeater('product in products')
+                    .column('product.name')).first().getText();
+      var category = element.all(by.repeater('product in products')
+                    .column('product.category')).first().getText();
+      var price = element.all(by.repeater('product in products')
+                    .column('product.price')).first().getText();
+      var stock = element.all(by.repeater('product in products')
+                    .column('product.stock')).first().getText();
     
       expect(productList.count()).toBe(13);
       expect(name).toEqual('Almond Toe Court Shoes, Patent Black');

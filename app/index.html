@@ -39,7 +39,7 @@
             <td>{{"@ " + (purchase.price | currency:"£")}}</td>
           </tr>
           <tr>
-            <th>Total: {{total}}</th>
+            <th id="cart-total">{{"Total: " + (total() | currency:"£")}}</th>
           </tr>
         </table>
       </aside>
