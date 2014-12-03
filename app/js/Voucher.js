@@ -1,7 +1,1 @@
-(function() {
-  
-  function Voucher() {
-
-  }
-
-})();
+function Voucher() {}

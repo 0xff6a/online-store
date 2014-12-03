@@ -34,8 +34,8 @@ describe('ShoppingCart', function() {
     });
 
     it('should know the total price of products in the cart', function() {
-      var cheap =  { id: 0, price: 12.00, stock: 2 };
-      var pricey = { id: 1, price: 125.00, stock: 1 };
+      var cheap =  new Product({ id: 0, price: 12.00, stock: 2 });
+      var pricey = new Product({ id: 1, price: 125.00, stock: 1 });
 
       cart.addToCart(cheap);
       cart.addToCart(pricey);
@@ -63,25 +63,5 @@ describe('ShoppingCart', function() {
       expect(cart.messages.errors).toEqual('Cannot delete a non-existent product');
     });
   });
-
-  // describe('#popSingle', function() {
-
-  //   it('should create a single copy of the product, decrementing stock of original', function() {
-  //     var single = cart.popSingle(product);
-
-  //     expect(single).toEqual({ id: 0, price: 12.00, stock: 1});
-  //     expect(product.stock).toBe(1);
-  //   });
-  // });
-  
-  // describe('#pushSingle', function() {
-    
-  //   it('should create a single copy of the product, incrementing stock of original', function() {
-  //     var single = scope.pushSingle(product);
-
-  //     expect(single).toEqual({ id: 0, price: 12.00, stock: 1});
-  //     expect(product.stock).toBe(3);
-  //   });
-  // });
 
 }); 
