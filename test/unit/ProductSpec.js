@@ -1,5 +1,4 @@
-/* jasmine specs for controllers go here */
-describe('Product Controller', function() {
+describe('ProductController', function() {
   var scope, ctrl, $httpBackend;
 
   beforeEach(module('onlineStore'));
@@ -10,7 +9,7 @@ describe('Product Controller', function() {
         respond([{name: 'Shirt'}, {name: 'Shoes'}]);
 
     scope = $rootScope.$new();
-    ctrl = $controller('ProductCtrl', {$scope: scope});
+    ctrl = $controller('ProductController', {$scope: scope});
   }));
 
   it('should set the default value of products model', function() {
