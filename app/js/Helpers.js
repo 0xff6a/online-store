@@ -1,6 +1,5 @@
 (function() {
   
-  /* Helpers */
   Array.prototype.sum = function() {
     var result = 0,
         i;

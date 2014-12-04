@@ -11,12 +11,16 @@ describe('ShoppingCart', function() {
 
   describe('initialisation', function() {
 
-    it('should set the default total of shopping cart model to 0', function() {
+    it('should set the default total to 0', function() {
       expect(cart.total()).toBe(0);
     });
 
     it('should have no products initially', function() {
       expect(cart.purchases).toEqual([]);
+    });
+
+    it('should have no discounts initially', function() {
+      expect(cart.discount).toBe(0);
     });
   });
 

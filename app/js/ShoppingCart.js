@@ -1,6 +1,7 @@
 ShoppingCart = function() {
   this.purchases = [];
   this.messages = {};
+  this.discount = 0;
 }
 
 ShoppingCart.prototype.total = function() {

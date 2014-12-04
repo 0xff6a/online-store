@@ -8,13 +8,13 @@
   { 
     "id": 1,
     "discount": 10,
-    "conditions": ["total > 50"],
+    "conditions": ["total() > 50"],
     "description": "£10 off if you spend over £50"
   },
   { 
     "id": 2,
     "discount": 15,
-    "conditions":["total > 75", "hasFootwearItem"],
+    "conditions":["total() > 75", "hasFootwearItem()"],
     "description": "£15 off if you spend over £75 and purchase footwear"
   }
 ]
