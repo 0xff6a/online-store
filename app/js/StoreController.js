@@ -15,6 +15,15 @@
       $scope.vouchers = $scope.factory(Voucher, data);
     });
 
+    $scope.singlePurchase = function(product) {
+      if ( product.stock === 0 ) {
+        $scope.message = "The selected product is out of stock";
+      } else {
+        this.cart.addToCart(product.popSingle());
+        $scope.message = "";
+      }
+    };
+
     $scope.returnSinglePurchase = function(purchase) {
       this.cart.removeFromCart(this.productById(purchase.id).pushSingle());
     };

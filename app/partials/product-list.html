@@ -13,6 +13,6 @@
     <td>{{product.category}}</td>
     <td>{{product.price | currency:"£"}}</td>
     <td>{{product.stock}}</td>
-    <td><a ng-click="cart.addToCart(product.popSingle())">+</a></td>
+    <td><a ng-click="singlePurchase(product)">+</a></td>
   </tr>
 </table>
