@@ -11,18 +11,17 @@ Product.prototype.total = function() {
 };
 
 Product.prototype.popSingle = function() {
-  var single = new Product(JSON.parse(JSON.stringify(this)));
-
-  this.stock -= 1;
-  single.stock = 1;
-
-  return single;
+  return this.moveSingle(-1);
 };
 
 Product.prototype.pushSingle = function() {
+  return this.moveSingle(1);
+};
+
+Product.prototype.moveSingle = function(sign) {
   var single = new Product(JSON.parse(JSON.stringify(this)));
 
-  this.stock += 1;
+  this.stock += sign * 1;
   single.stock = 1;
 
   return single;
