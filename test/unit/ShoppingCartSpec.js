@@ -39,16 +39,6 @@ describe('ShoppingCart', function() {
       expect(cart.purchases).toEqual([combined]);
     });
 
-    it('should know the total price of products in the cart', function() {
-      var cheap =  new Product({ id: 0, price: 12.00, stock: 2 });
-      var pricey = new Product({ id: 1, price: 125.00, stock: 1 });
-
-      cart.addToCart(cheap);
-      cart.addToCart(pricey);
-
-      expect(cart.total()).toBe(149);
-    });
-
     it('products can be removed', function() {
       cart.addToCart(product);
       cart.removeFromCart(product);
@@ -70,4 +60,23 @@ describe('ShoppingCart', function() {
     });
   });
 
+  describe('#total', function() {
+    var cheap =  new Product({ id: 0, price: 12.00, stock: 2 }),
+        pricey = new Product({ id: 1, price: 125.00, stock: 1 });
+
+    beforeEach(function() {
+      cart.addToCart(cheap);
+      cart.addToCart(pricey);
+    });
+
+    it('should know the total price of products in the cart', function() {
+      expect(cart.total()).toBe(149);
+    });
+
+    it('shoud include discounts in the cart total', function() {
+      cart.discount = 49;
+
+      expect(cart.total()).toBe(100);
+    });
+  });
 }); 

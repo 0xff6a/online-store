@@ -33,16 +33,14 @@ describe('Voucher', function() {
 
   it('should know if the voucher is not valid for a shopping cart', function() {
     cart.purchases.first().price = 1;
-    
+
     expect(voucher.isValidFor(cart)).toBe(false);
   });
 
-  xit('should only apply the discount if the voucher is valid', function() {
+  it('should only apply the discount if the voucher is valid', function() {
+    cart.purchases.first().price = 1;
+    voucher.applyTo(cart);
 
+    expect(cart.discount).toBe(0);
   });
-
-  xit('it should display a message if the voucher is invalid', function() {
-
-  });
-
-})
+});

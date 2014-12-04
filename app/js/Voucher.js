@@ -6,7 +6,13 @@ function Voucher(params) {
 };
 
 Voucher.prototype.applyTo = function(shoppingCart) {
-  shoppingCart.discount += this.discount;
+  var isValid =  this.isValidFor(shoppingCart);
+
+  if ( isValid ) {
+    shoppingCart.discount += this.discount;
+  }
+
+  return isValid;
 };
 
 Voucher.prototype.isValidFor = function(shoppingCart) {
@@ -14,7 +20,3 @@ Voucher.prototype.isValidFor = function(shoppingCart) {
     return eval("shoppingCart." + condition);
   });
 };
-/*
-  isValidFor(cart)
-  applyTo(cart)
-*/

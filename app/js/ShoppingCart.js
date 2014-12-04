@@ -5,7 +5,7 @@ ShoppingCart = function() {
 }
 
 ShoppingCart.prototype.total = function() {
-  return this.subtotals().sum();
+  return (this.subtotals().sum() - this.discount);
 };  
 
 ShoppingCart.prototype.subtotals = function() {
