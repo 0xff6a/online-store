@@ -9,7 +9,11 @@
     <td>{{purchase.name}}</td>
     <td>{{purchase.stock + " x "}}</td>
     <td>{{"@ " + (purchase.price | currency:"£")}}</td>
-    <td><a ng-click="returnSinglePurchase(purchase)">X</a></td>
+    <td>
+      <a ng-click="returnSinglePurchase(purchase)">
+        {{purchase.stock === 1 ? "X" : "-"}}
+      </a>
+    </td>
   </tr>
   <tr>
     <th id="cart-total">{{"Total: " + (cart.total() | currency:"£")}}</th>
