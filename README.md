@@ -1,17 +1,9 @@
 Need to link product with cart when removing... How??
 
-Solution
+- hit link
+- retrieve product from products array by purchase id 
+[need to create this mapping in StoreController]
+- call cart.remove(product.pushSingle()_
 
-- Scrap multiple controllers - use single StoreController for the app
-
-- extract Cart, Product, Voucher as standalone objects
-modify tests for these
-
-- Initialiise cart/product/voucher as before in store controller
-
-- popSingle/PushSingle as product methods
-all others stay the same
-
-- Add all directives into single controller
 
 

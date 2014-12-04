@@ -15,6 +15,16 @@
       $scope.vouchers = $scope.factory(Voucher, data);
     });
 
+    $scope.returnSinglePurchase = function(purchase) {
+      this.cart.removeFromCart(this.productById(purchase.id).pushSingle());
+    };
+
+    $scope.productById = function(id) {
+      return $scope.products.filter( function(product) {
+        return product.id === id;
+      }).first();
+    };
+
     $scope.factory = function(obj, paramsArray) {
       return paramsArray.map(function(params) {
         return new obj(params);

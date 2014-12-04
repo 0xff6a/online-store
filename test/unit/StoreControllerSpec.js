@@ -55,4 +55,13 @@ describe('StoreController', function() {
       expect(scope.vouchers).toEqual([new Voucher(voucherData)]);
     });
   });
+
+  describe('#productById', function() {
+
+    it('should return a product from the products array given its id', function() {
+      scope.products = [{ id: 0, name: 'wrong'}, { id: 1, name: 'correct'}];
+
+      expect(scope.productById(1).name).toEqual('correct');
+    });
+  });
 });
