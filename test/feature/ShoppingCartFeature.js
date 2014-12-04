@@ -38,4 +38,8 @@ describe('Shopping Cart Feature', function() {
     
     expect(total).toEqual('Total: £0.00');
   });
+
+  it('should not allow a user to add an out of stock product to their cart', function() {
+    
+  });
 });

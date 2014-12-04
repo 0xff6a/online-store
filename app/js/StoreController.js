@@ -20,7 +20,7 @@
     };
 
     $scope.productById = function(id) {
-      return $scope.products.filter( function(product) {
+      return this.products.filter( function(product) {
         return product.id === id;
       }).first();
     };
