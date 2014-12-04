@@ -73,7 +73,7 @@ describe('ShoppingCart', function() {
       expect(cart.total()).toBe(149);
     });
 
-    it('shoud include discounts in the cart total', function() {
+    it('should include discounts in the cart total', function() {
       cart.discount = 49;
 
       expect(cart.total()).toBe(100);
