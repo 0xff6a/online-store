@@ -40,6 +40,6 @@ describe('Shopping Cart Feature', function() {
   });
 
   it('should not allow a user to add an out of stock product to their cart', function() {
-    
+    expect(true).toBe(false);
   });
 });
