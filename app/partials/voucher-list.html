@@ -4,7 +4,7 @@
     <th>Discount</th>
     <th>Description</th>
   </tr>
-  <tr ng-repeat="voucher in vouchers">
+  <tr ng-repeat="voucher in vouchers" ng-hide="voucher.isExpired">
     <td>{{voucher.discount | currency:"£"}}</td>
     <td>{{voucher.description}}</td>
     <td><span ng-click="voucher.applyTo(cart)" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td>

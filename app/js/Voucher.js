@@ -3,6 +3,7 @@ function Voucher(params) {
   this.discount = params.discount;
   this.conditions = params.conditions;
   this.description = params.description;
+  this.isExpired = false;
 };
 
 Voucher.prototype.applyTo = function(shoppingCart) {
@@ -10,6 +11,7 @@ Voucher.prototype.applyTo = function(shoppingCart) {
 
   if ( isValid ) {
     shoppingCart.discount += this.discount;
+    this.isExpired = true;
   }
 
   return isValid;
